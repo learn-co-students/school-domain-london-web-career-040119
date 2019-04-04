@@ -18,10 +18,8 @@ class School
   end
 
   def sort
-    sorted_hash = {}
-    @roster.each { |key, val|
-    sorted_hash[key] = val.sort}
-    sorted_hash
+    @roster.transform_values { |students| students.sort}
+
    end
 
 end
