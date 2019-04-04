@@ -1,22 +1,32 @@
 # code here!
 class School
 
+  attr_reader :name
+  attr_accessor :roster
 
-  def initialize(school)
-    @school = school
+  def initialize(name,roster={})
+    @name = name
+    @roster = roster
   end
 
-  def roster
-    return {}
+  def add_student(student,grade)
+    if self.roster.key?(grade)
+      self.roster[grade] << student
+    else
+      self.roster[grade] = [student]
+    end
   end
 
-  def grade=(grade)
-    return roster[grade].values
+  def grade(grade)
+    return self.roster[grade]
   end
 
   def sort
-    sorted_roster = roster.values.sort
-    return sorted_roster
+    roster.transform_values{|v| v.sort}
   end
 
 end
+
+# school = School.new("Example School")
+# puts school.name
+# puts school.roster
